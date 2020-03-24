@@ -1,0 +1,23 @@
+[
+{
+    "model": "bookshelf.user",
+    "pk": 1,
+    "fields": {
+        "name": "Leanne Graham"
+    }
+},
+{
+    "model": "bookshelf.user",
+    "pk": 2,
+    "fields": {
+        "name": "Ervin Howell"
+    }
+},
+{
+    "model": "bookshelf.user",
+    "pk": 3,
+    "fields": {
+        "name": "Clementine Bauch"
+    }
+}
+]
