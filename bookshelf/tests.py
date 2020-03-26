@@ -26,3 +26,37 @@ class UserTestCase(APITestCase):
             *self.before_content,
             self.single_content,
         ])
+
+
+class BookTestCase(APITestCase):
+    url = reverse('bookshelf:book-list')
+    def url_detail(self, pk):
+        return reverse('bookshelf:book-detail', kwargs={'pk': pk})
+    fixtures = ['users.json', 'books.json']
+    
+    def test_list_books(self):
+        self.response = self.client.get(self.url)
+        self.assertEqual(200, self.response.status_code)
+        self.content = json.loads(self.response.content)
+        self.assertEqual(Book.objects.count(), len(self.content))
+
+    def test_create_book(self):
+        self.before_content = json.loads(self.client.get(self.url).content)
+        self.response = self.client.post(self.url, {
+            'title': 'The Silent Patient',
+            'author': 'Michaelides Alex',
+            'description': 'Alicia Berenson’s life is seemingly perfect.',
+            'owner': 2,
+        })
+        self.single_content = json.loads(self.response.content)
+        self.assertEqual(201, self.response.status_code)
+        self.after_content = json.loads(self.client.get(self.url).content)
+        self.assertEqual(self.after_content, [
+            *self.before_content,
+            self.single_content,
+        ])
+
+    def test_retrieve_user_related_books(self):
+        self.response = self.client.get(self.url + '?owner=2')
+        self.content = json.loads(self.response.content)
+        self.assertEqual(Book.objects.filter(owner__pk=2).count(), len(self.content))
