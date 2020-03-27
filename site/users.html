@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Library</title>
+		<link   rel="stylesheet" 
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+			crossorigin="anonymous">	
+	</head>
+	<body>
+		<div class='container'>
+			<table class='table table-hover'>
+				<thead class='thead-light'><tr><th>Name</th></tr></thead>
+			</table>
+			<form>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+				</div>
+				<button type="submit" class="btn btn-primary" onclick="submitUser(this.form)">Submit</button>
+			</form>
+		</div>
+		<script src='users.js'></script>
+	</body>
+</html>
