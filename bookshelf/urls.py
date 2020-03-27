@@ -4,10 +4,12 @@ from rest_framework import routers
 
 from .views import UserList, BookList
 
+app_name = 'bookshelf'
+
 router = routers.SimpleRouter()
-router.register('books', BookList)
+router.register('books', BookList, basename='book')
 
 urlpatterns = [
-    path('users/', UserList.as_view()),
+    path('users/', UserList.as_view(), name='users'),
     *router.urls,
 ]
